@@ -1,11 +1,11 @@
 /**
  * 用户类别
  */
-export type CurrentUser = {
+export type UserType = {
     id: number;
     username?: string;
-    userAccount: string;
-    avatarUrl: string;
+    userAccount?: string;
+    avatarUrl?: string;
     gender?: number;
     phone?: string;
     email?: string;
@@ -13,5 +13,6 @@ export type CurrentUser = {
     userRole?: number;
     createTime?: Date;
     comment?: string;
-    tags:string[];
+    profile?: string;
+    tags:string;
 };

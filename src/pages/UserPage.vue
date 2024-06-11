@@ -14,6 +14,10 @@
 <script setup lang="ts">
 
 import {useRouter} from "vue-router";
+import {onMounted, ref} from 'vue';
+import myAxios from "../plungins/myAxios.ts";
+import {showToast} from "vant";
+import qs from 'qs'
 
 const user = {
   id: 1,
@@ -27,6 +31,37 @@ const user = {
   createTime: new Date(),
 
 }
+/*
+//当页面加载好后执行里面的内容
+onMounted(async () => {
+  const userListResponse = await myAxios.get('/user/search/tags', {
+    params: {
+      tagNameList: tags
+    },
+    paramsSerializer: {
+      serialize: params => qs.stringify(params, {indices: false}),
+    },
+  })
+      .then(function (response) {
+        console.log('/user/search/tags succeed', response);
+        showToast('success')
+        return response.data?.data;
+      })
+      .catch(function (error) {
+        console.log('/user/search/tags error', error);
+        showToast('fail');
+      })
+  if(userListResponse){
+    userListResponse.forEach(user=>{
+      if(user.tags)
+        user.tags=JSON.parse(user.tags);
+    })
+    userList.value = userListResponse;
+  }
+})
+*/
+
+
 const router = useRouter();
 const toEdit = (editKey: string,editName: string,currentValue: string) => {
   router.push({
