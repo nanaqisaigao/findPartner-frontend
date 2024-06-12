@@ -1,19 +1,6 @@
 <template>
 
-  <van-card
-      v-for="u in userList"
-      :desc="u.profile"
-      :title="`${u.username} (${u.gender})`"
-      :thumb="u.avatarUrl"
-      :num="u.comment"
-  >
-    <template #tags>
-      <van-tag plain type="primary" v-for="tag in u.tags" style="margin-right: 8px">{{ tag }}</van-tag>
-    </template>
-    <template #footer>
-      <van-button size="small">联系我</van-button>
-    </template>
-  </van-card>
+  <user-card-list :user-list="userList" />
 
   <van-empty v-if = "!userList||userList.length<1" description="没有这样的用户"/>
 </template>
@@ -26,6 +13,7 @@ import myAxios from "../plungins/myAxios.ts";
 import {showToast} from "vant";
 import qs from 'qs'
 import {UserType} from "../models/user";
+import UserCardList from "../components/UserCardList.vue";
 
 const route = useRoute();
 const {tags} = route.query;

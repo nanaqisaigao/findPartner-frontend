@@ -9,7 +9,7 @@ import UserLoginPage from "../pages/UserLoginPage.vue";
 
 
 const routes = [
-    { path: '/', component: UserLoginPage },
+    { path: '/', component: Index },
     { path: '/team', component: Team },
     { path: '/user', component: User },
     { path: '/search', component: SearchPage },
