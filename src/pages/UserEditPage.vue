@@ -19,19 +19,33 @@
 </template>
 
 <script setup lang="ts">
-import {useRoute} from "vue-router";
+import {useRoute,useRouter} from "vue-router";
 import {ref} from "vue"
+import myAxios from "../plungins/myAxios.ts";
+import {showToast} from "vant";
 const route = useRoute();
+const router = useRouter();
 const editUser = ref({
+  editId:route.query.editId,
   editKey:route.query.editKey,
   editName:route.query.editName,
   currentValue:route.query.currentValue,
 })
 console.log(route.query)
 
-const onSubmit = (values:string) => {
-  //TODO 把 三个参数提交给后台
-  console.log(values)
+const onSubmit = async()  => {
+  const res = await myAxios.post('/user/update', {
+    'id': editUser.value.editId,
+    //中括号括起来可以生成一个对象
+    [editUser.value.editKey as string]: editUser.value.currentValue
+  })
+  if(res.code === 0 && res.data>0){
+    showToast("修改成功");
+    router.back();
+  }else {
+    showToast("修改错误");
+  }
+
 };
 </script>
 

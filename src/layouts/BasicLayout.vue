@@ -10,6 +10,7 @@
       <van-icon name="search" size="18"/>
     </template>
   </van-nav-bar>
+
   <div id ="content">
     <router-view />
   </div>
@@ -25,15 +26,14 @@
 <script setup lang="ts">
 import {showToast} from 'vant';
 import {useRouter} from "vue-router";
-const router = useRouter()
+
+const router = useRouter();
 const onClickLeft = () =>{
   router.back()
 };
 const onClickRight = () =>{
   router.push('/search')
 } ;
-
-
 
 // const active = ref("index");
 const onChange = (index:string) => {  if (index !== undefined) {showToast(`标签 ${index}`);}}

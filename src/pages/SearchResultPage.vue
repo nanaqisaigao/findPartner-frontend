@@ -46,12 +46,13 @@ onMounted(async () => {
       .then(function (response) {
         console.log('/user/search/tags succeed', response);
         showToast('success')
-        return response.data?.data;
+        return response?.data;
       })
       .catch(function (error) {
         console.log('/user/search/tags error', error);
         showToast('fail');
       })
+  console.log('userListResponse', userListResponse)
   if(userListResponse){
     userListResponse.forEach(user=>{
       if(user.tags)
