@@ -23,19 +23,25 @@ import {useRoute,useRouter} from "vue-router";
 import {ref} from "vue"
 import myAxios from "../plungins/myAxios.ts";
 import {showToast} from "vant";
+import {getCurrentUserState} from "../states/user.ts";
 const route = useRoute();
 const router = useRouter();
 const editUser = ref({
-  editId:route.query.editId,
   editKey:route.query.editKey,
   editName:route.query.editName,
   currentValue:route.query.currentValue,
 })
 console.log(route.query)
 
+const currentUser = getCurrentUserState();
+if (!currentUser) {
+  showToast('请先登录');
+}
+
 const onSubmit = async()  => {
   const res = await myAxios.post('/user/update', {
-    'id': editUser.value.editId,
+    // 'id': editUser.value.editId,
+    'id': currentUser.id,
     //中括号括起来可以生成一个对象
     [editUser.value.editKey as string]: editUser.value.currentValue
   })
