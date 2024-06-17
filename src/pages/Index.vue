@@ -40,7 +40,10 @@ const userList = ref<UserType[]>([]);
 //当页面加载好后执行里面的内容
 onMounted(async () => {
   const userListResponse :UserType[]= await myAxios.get('/user/recommend', {
-    params: {},
+    params: {
+      pageSize:20,
+      pageNum:1
+    },
     paramsSerializer: {
       serialize: params => qs.stringify(params, {indices: false}),
     },
@@ -48,7 +51,7 @@ onMounted(async () => {
       .then(function (response) {
         console.log('/user/search/tags succeed', response);
         showToast('success')
-        return response?.data;
+        return response?.data.records;
       })
       .catch(function (error) {
         console.log('/user/search/tags error', error);
