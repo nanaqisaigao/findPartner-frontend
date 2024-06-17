@@ -3,7 +3,7 @@
     <van-card
         v-for="u in props.userList"
         :desc="u.profile"
-        :title="`${u.username} (${u.gender})`"
+        :title="`${u.username} (${userGenderEnum[u.gender]})`"
         :thumb="u.avatarUrl"
         :num="u.comment"
     >
@@ -13,12 +13,15 @@
       <template #footer>
         <van-button size="small">联系我</van-button>
       </template>
+
     </van-card>
+
 <!--  </van-skeleton>-->
 </template>
 
 <script setup lang="ts">
 import {UserType} from "../models/user";
+import {userGenderEnum} from "../constants/gender.ts";
 
 //定义属性类型
 interface UserCardListProps {
