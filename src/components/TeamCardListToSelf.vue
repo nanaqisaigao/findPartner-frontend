@@ -1,7 +1,7 @@
 <template>
 
   <div
-      id="teamCardList"
+      id="teamCardListToSelf"
   >
     <!--  <van-skeleton title avatar :row="3" :loading="props.loading" v-for="user in props.teamList">-->
     <van-card
@@ -30,7 +30,6 @@
         </div>
       </template>
       <template #footer>
-        <van-button size="small" type="primary" plain @click="doJoinTeam(team.id)">加入队伍</van-button>
         <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
                     @click="doUpdateTeam(team.id)">更新队伍
         </van-button>
@@ -75,13 +74,13 @@ onMounted(async () => {
   }
 })
 
-interface TeamCardListProps {
+interface teamCardListToSelfProps {
   // loading: boolean;
   teamList: TeamType[];
 }
 
 //他可以拿到父组件传递过来的值     wothDefaults用来设置默认值
-const props = withDefaults(defineProps<TeamCardListProps>(), {
+const props = withDefaults(defineProps<teamCardListToSelfProps>(), {
   // @ts-ignore
   teamList: [] as TeamType,
 })
@@ -111,7 +110,7 @@ const doUpdateTeam = (id: number) => {
 
 
 <style scoped>
-#teamCardList :deep(.van-image__img) {
+#teamCardListToSelf :deep(.van-image__img) {
   height: 128px;
   object-fit: unset;
 }

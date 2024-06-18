@@ -1,7 +1,9 @@
 <template>
 <div id="teamPage">
+  <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
   <van-button type="primary" to="/team/add" >添加队伍</van-button>
   <team-card-list :team-list="teamList" />
+  <van-empty v-if = "!teamList||teamList.length<1" description="数据为空"/>
 </div>
 
 </template>
@@ -16,18 +18,29 @@ import myAxios from "../plungins/myAxios.ts";
 import {showFailToast} from "vant";
 
 const router = useRouter();
-
 const teamList = ref([]);
+const searchText = ref("");
 
 onMounted(async ()=>{
-  const res = await myAxios.get("/team/list");
-  if(res.code === 0){
-      teamList.value = res.data;
-  }else {
-    showFailToast("加载队伍失败，请刷新重试")
-  }
+  listTeam();
 })
 
+const listTeam = async (val='')=> {
+  const res = await myAxios.get("/team/list",{
+    params:{
+      searchText:val,
+    }
+  });
+  if (res.code === 0) {
+    teamList.value = res.data;
+  } else {
+    showFailToast("加载队伍失败，请刷新重试")
+  }
+};
+
+const onSearch = async (val)=> {
+  listTeam(val);
+};
 
 
 </script>
