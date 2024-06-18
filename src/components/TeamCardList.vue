@@ -31,15 +31,15 @@
       </template>
       <template #footer>
         <van-button size="small" type="primary" plain @click="doJoinTeam(team.id)">加入队伍</van-button>
-        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
-                    @click="doUpdateTeam(team.id)">更新队伍
-        </van-button>
-        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
-                    @click="doUpdateTeam(team.id)">退出队伍
-        </van-button>
-        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
-                    @click="doUpdateTeam(team.id)">解散队伍
-        </van-button>
+        <!--        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
+                           @click="doUpdateTeam(team.id)">更新队伍
+               </van-button>
+              <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
+                           @click="doUpdateTeam(team.id)">退出队伍
+               </van-button>
+               <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
+                           @click="doUpdateTeam(team.id)">解散队伍
+               </van-button>-->
       </template>
 
     </van-card>
@@ -95,15 +95,6 @@ const doJoinTeam = async (id: number) => {
   } else {
     showFailToast("加入失败")
   }
-}
-
-const doUpdateTeam = (id: number) => {
-  router.push({
-    path: '/team/update',
-    query: {
-      id,
-    }
-  })
 }
 
 
