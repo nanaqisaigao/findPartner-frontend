@@ -1,9 +1,12 @@
 <template>
   <template v-if="user">
-    <van-cell title="修改信息" is-link to="/user/update" />
-    <van-cell title="创建新队伍" is-link to="/team/add" />
-    <van-cell title="我创建的队伍" is-link to="/user/team/create" />
-    <van-cell title="我加入的队伍" is-link to="/user/team/join" />
+    <van-cell icon="setting-o" title="修改信息" is-link to="/user/update" />
+    <van-cell icon="friends-o" title="匹配相似标签用户" is-link to="/user/match" />
+    <van-cell icon="friends-o" title="匹配差异性用户" is-link to="/user/match/reverse" />
+    <van-cell icon="add-o" title="创建新队伍" is-link to="/team/add" />
+    <van-cell icon="smile-o" title="我创建的队伍" is-link to="/user/team/create" />
+    <van-cell icon="smile-o" title="我所在的队伍" is-link to="/user/team/join" />
+
   </template>
 </template>
 

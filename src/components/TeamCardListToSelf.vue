@@ -39,7 +39,7 @@
                     @click="doQuitTeam(team.id)">退出队伍
         </van-button>
         <!--        自己创建的才能更新-->
-        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="primary" plain
+        <van-button v-if="team.createUser?.id === currentUser?.id" size="small" type="danger" plain
                     @click="doDeleteTeam(team.id)">解散队伍
         </van-button>
       </template>

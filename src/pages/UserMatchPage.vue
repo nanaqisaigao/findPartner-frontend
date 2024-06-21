@@ -1,21 +1,5 @@
 <template>
 
-<!--
-  <van-card
-      v-for="u in userList"
-      :desc="u.profile"
-      :title="`${u.username} (${u.gender})`"
-      :thumb="u.avatarUrl"
-      :num="u.comment"
-  >
-    <template #tags>
-      <van-tag plain type="primary" v-for="tag in u.tags" style="margin-right: 8px">{{ tag }}</van-tag>
-    </template>
-    <template #footer>
-      <van-button size="small">联系我</van-button>
-    </template>
-  </van-card>
--->
 <!--  使用组件-->
   <user-card-list :user-list="userList" :loading="loading"/>
 
@@ -37,26 +21,25 @@ const route = useRoute();
 
 const userList = ref<UserType[]>([]);
 const loading =ref(true);
-
 //当页面加载好后执行里面的内容
 onMounted(async () => {
   loading.value = true;
-  const userListResponse :UserType[]= await myAxios.get('/user/recommend', {
+  const num = 15;
+  const userListResponse :UserType[]= await myAxios.get('/user/match', {
     params: {
-      pageSize:50,
-      pageNum:1
+      num,
     },
-    paramsSerializer: {
+   /* paramsSerializer: {
       serialize: params => qs.stringify(params, {indices: false}),
-    },
+    },*/
   })
       .then(function (response) {
-        console.log('/user/search/tags succeed', response);
+        console.log('/user/match succeed', response);
         showToast('success')
-        return response?.data.records;
+        return response?.data;
       })
       .catch(function (error) {
-        console.log('/user/search/tags error', error);
+        console.log('/user/match error', error);
         showToast('fail');
       })
   console.log('userListResponse', userListResponse)

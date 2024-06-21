@@ -11,6 +11,8 @@ import UserUpdatePage from "../pages/UserUpdatePage.vue";
 import UserPage from "../pages/UserPage.vue";
 import UserTeamJoinPage from "../pages/UserTeamJoinPage.vue";
 import UserTeamCreatePage from "../pages/UserTeamCreatePage.vue";
+import UserMatchPage from "../pages/UserMatchPage.vue";
+import UserMatchReversePage from "../pages/UserMatchReversePage.vue";
 
 
 const routes = [
@@ -24,6 +26,8 @@ const routes = [
     { path: '/user/list', component: SearchResultPage },
     { path: '/user/login', component: UserLoginPage },
     { path: '/user/update', component: UserUpdatePage },
+    { path: '/user/match', component: UserMatchPage },
+    { path: '/user/match/reverse', component: UserMatchReversePage },
     { path: '/user/team/create', component: UserTeamCreatePage },
     { path: '/user/team/join', component: UserTeamJoinPage },
 

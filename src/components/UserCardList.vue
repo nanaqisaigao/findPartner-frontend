@@ -1,5 +1,5 @@
 <template>
-<!--  <van-skeleton title avatar :row="3" :loading="props.loading" v-for="user in props.userList">-->
+  <van-skeleton title avatar :row="3" :loading="props.loading">
     <van-card
         v-for="u in props.userList"
         :desc="u.profile"
@@ -16,7 +16,7 @@
 
     </van-card>
 
-<!--  </van-skeleton>-->
+ </van-skeleton>
 </template>
 
 <script setup lang="ts">
@@ -25,13 +25,13 @@ import {userGenderEnum} from "../constants/gender.ts";
 
 //定义属性类型
 interface UserCardListProps {
-  // loading: boolean;
+  loading: boolean;
   userList: UserType[];
 }
 
 //他可以拿到父组件传递过来的值     wothDefaults用来设置默认值
 const props =withDefaults(defineProps<UserCardListProps>(),{
-
+  loading: true,
   // @ts-ignore
   userList: [] as UserType,
 })
